@@ -9,7 +9,6 @@ router.get('/', async (req, res) => {
   try {
     const allTags = await Tag.findAll({
       include: [{ model: Product }],
-      include: [{ model: ProductTag }],
     });
     res.status(200).json(allTags);
   } catch (err) {
@@ -23,7 +22,6 @@ router.get('/:id', async (req, res) => {
   try {
     const allTags = await Tag.findByPk(req.params.id, {
       include: [{ model: Product }],
-      include: [{ model: ProductTag }],
     });
     if (!allTags) {
       res.status(404).json({ message: 'No reader found with that id!' });
